@@ -29,36 +29,29 @@ export function AIChatAssistant() {
   const [isConnected, setIsConnected] = useState(true);
   const [canScrollUp, setCanScrollUp] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Improved auto-scroll (smooth and reliable)
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      const scrollElement = scrollAreaRef.current;
-      // Use requestAnimationFrame for better timing
-      requestAnimationFrame(() => {
-        scrollElement.scrollTo({
-          top: scrollElement.scrollHeight,
-          behavior: 'smooth',
-        });
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
       });
     }
   }, [messages]);
 
-  // Handle scroll events to detect if user can scroll up
   useEffect(() => {
     const scrollElement = scrollAreaRef.current;
     if (!scrollElement) return;
 
     const handleScroll = () => {
       const isAtTop = scrollElement.scrollTop === 0;
-      const isAtBottom = scrollElement.scrollTop + scrollElement.clientHeight >= scrollElement.scrollHeight - 10;
       setCanScrollUp(!isAtTop);
     };
 
     scrollElement.addEventListener('scroll', handleScroll);
-    // Initial check
     handleScroll();
-    
+
     return () => scrollElement.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -151,10 +144,10 @@ export function AIChatAssistant() {
   };
 
   const scrollToBottom = () => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollHeight,
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({
         behavior: 'smooth',
+        block: 'end',
       });
     }
   };
@@ -169,6 +162,7 @@ export function AIChatAssistant() {
         </p>
       </div>
 
+      {/* ✅ Fixed height on the card and flex container */}
       <Card className="h-[600px] flex flex-col overflow-hidden">
         <CardHeader className="flex-shrink-0">
           <div className="flex items-center justify-between">
@@ -195,8 +189,9 @@ export function AIChatAssistant() {
           </div>
         </CardHeader>
 
-        <CardContent className="flex-1 flex flex-col p-0">
-          {/* ✅ Scrollable Messages Area */}
+        {/* ✅ Updated CardContent to fill remaining space */}
+        <CardContent className="flex-1 flex flex-col p-0 overflow-y-auto">
+          {/* ✅ The message area is now the only part that scrolls */}
           <div
             className="flex-1 overflow-y-auto p-4 chat-scroll relative"
             ref={scrollAreaRef}
@@ -205,67 +200,67 @@ export function AIChatAssistant() {
               scrollbarColor: '#d1d5db #f3f4f6',
             }}
           >
-            {/* Scroll indicator */}
             {canScrollUp && (
               <div className="absolute top-2 left-1/2 transform -translate-x-1/2 bg-primary/90 text-primary-foreground px-3 py-1 rounded-full text-xs font-medium shadow-lg z-10">
                 ↑ More messages above
               </div>
             )}
             <div className="space-y-4 pb-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex gap-3 ${
-                    message.role === 'user'
-                      ? 'justify-end'
-                      : 'justify-start'
-                  }`}
-                >
-                  {message.role === 'assistant' && (
-                    <Avatar className="w-8 h-8 flex-shrink-0">
-                      <AvatarFallback className="bg-primary text-primary-foreground">
-                        <Bot className="w-4 h-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                  )}
-
+              {messages.map((message, index) => {
+                const isLastMessage = index === messages.length - 1;
+                return (
                   <div
-                    className={`max-w-[80%] rounded-lg p-3 break-words ${
-                      message.role === 'user'
-                        ? 'bg-primary text-primary-foreground'
-                        : 'bg-muted'
+                    key={message.id}
+                    className={`flex gap-3 ${
+                      message.role === 'user' ? 'justify-end' : 'justify-start'
                     }`}
+                    ref={isLastMessage ? lastMessageRef : null}
                   >
-                    {message.isLoading ? (
-                      <div className="flex items-center gap-2">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span className="text-sm">AI is thinking...</span>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
-                          {message.content}
-                        </p>
-                        <p className="text-xs opacity-70">
-                          {message.timestamp.toLocaleTimeString()}
-                        </p>
-                      </div>
+                    {message.role === 'assistant' && (
+                      <Avatar className="w-8 h-8 flex-shrink-0">
+                        <AvatarFallback className="bg-primary text-primary-foreground">
+                          <Bot className="w-4 h-4" />
+                        </AvatarFallback>
+                      </Avatar>
+                    )}
+
+                    <div
+                      className={`max-w-[80%] rounded-lg p-3 break-words ${
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted'
+                      }`}
+                    >
+                      {message.isLoading ? (
+                        <div className="flex items-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span className="text-sm">AI is thinking...</span>
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          <p className="text-sm whitespace-pre-wrap break-words leading-relaxed">
+                            {message.content}
+                          </p>
+                          <p className="text-xs opacity-70">
+                            {message.timestamp.toLocaleTimeString()}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+
+                    {message.role === 'user' && (
+                      <Avatar className="w-8 h-8 flex-shrink-0">
+                        <AvatarFallback className="bg-secondary text-secondary-foreground">
+                          <User className="w-4 h-4" />
+                        </AvatarFallback>
+                      </Avatar>
                     )}
                   </div>
-
-                  {message.role === 'user' && (
-                    <Avatar className="w-8 h-8 flex-shrink-0">
-                      <AvatarFallback className="bg-secondary text-secondary-foreground">
-                        <User className="w-4 h-4" />
-                      </AvatarFallback>
-                    </Avatar>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          {/* Input Area - Always Visible */}
           <div className="border-t p-4 flex-shrink-0 bg-background">
             <div className="flex gap-2">
               <Input
@@ -295,7 +290,6 @@ export function AIChatAssistant() {
         </CardContent>
       </Card>
 
-      {/* Quick Actions */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

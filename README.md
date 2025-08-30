@@ -1,73 +1,163 @@
-# Welcome to your Lovable project
+# WorkSpaceAI - AI-Powered Unified Work Assistant
 
-## Project info
+An AI-powered productivity dashboard that centralizes work emails, documents, presentations, and chats — and auto-generates smart summaries and email drafts — all in one place.
 
-**URL**: https://lovable.dev/projects/1a451236-1008-41a9-b14d-678d7b0b39b9
+## 🚀 Features
 
-## How can I edit this code?
+- **🤖 AI Chat Assistant** - Powered by OpenAI GPT-3.5-turbo
+- **📧 Email Summaries** - AI-powered email analysis and summarization
+- **📄 Document AI** - Intelligent document processing and insights
+- **💬 Chat Integration** - Seamless communication workflows
+- **📅 Meeting Digests** - Automated meeting summaries and action items
+- **⚡ Smart Automation** - AI-driven productivity enhancements
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend**: React + TypeScript + Vite + Tailwind CSS
+- **Backend**: Node.js + Express + TypeScript
+- **AI**: OpenAI GPT-3.5-turbo API
+- **Authentication**: Google OAuth 2.0
+- **Styling**: Shadcn/ui components
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1a451236-1008-41a9-b14d-678d7b0b39b9) and start prompting.
+## 📋 Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js 18+ 
+- npm or bun
+- OpenAI API key
 
-**Use your preferred IDE**
+## 🚀 Quick Start
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/dhananjaiyadav1234/WorkSpaceAIBhoomi.git
+cd WorkSpaceAIBhoomi
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 2. Install Dependencies
+```bash
+# Install frontend dependencies
+npm install
 
-Follow these steps:
+# Install backend dependencies
+cd backend
+npm install
+cd ..
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### 3. Environment Setup
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+#### Frontend (.env in root directory)
+```env
+VITE_API_URL=http://localhost:5001
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+#### Backend (.env in backend directory)
+```env
+# OpenAI Configuration
+OPENAI_API_KEY=your-openai-api-key-here
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Server Configuration
+PORT=5001
+NODE_ENV=development
+
+# JWT Secret (for authentication)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+
+# Google OAuth (optional)
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
+
+### 4. Start Development Servers
+
+#### Start Backend
+```bash
+cd backend
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+#### Start Frontend (in new terminal)
+```bash
+npm run dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 5. Access the Application
+- **Frontend**: http://localhost:8080
+- **Backend API**: http://localhost:5001
+- **Chatbot**: http://localhost:8080/chatbot
 
-**Use GitHub Codespaces**
+## 🔐 Security Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- ✅ Environment variables for sensitive data
+- ✅ API key validation and error handling
+- ✅ Secure authentication with JWT
+- ✅ CORS protection
+- ✅ Input validation and sanitization
 
-## What technologies are used for this project?
+## 🎯 Usage
 
-This project is built with:
+1. **Authentication**: Sign in with Google OAuth
+2. **Dashboard**: Access your unified work interface
+3. **AI Chat**: Click "Chat with AI" to interact with WorkSpaceAI
+4. **Productivity**: Use AI assistance for emails, documents, and tasks
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🏗️ Project Structure
 
-## How can I deploy this project?
+```
+WorkSpaceAI/
+├── src/                    # Frontend source code
+│   ├── components/        # React components
+│   ├── pages/            # Page components
+│   ├── context/          # React context
+│   └── lib/              # Utility libraries
+├── backend/               # Backend source code
+│   ├── src/              # TypeScript source
+│   │   ├── routes/       # API routes
+│   │   └── index.ts      # Main server file
+│   └── package.json      # Backend dependencies
+├── public/                # Static assets
+└── README.md             # This file
+```
 
-Simply open [Lovable](https://lovable.dev/projects/1a451236-1008-41a9-b14d-678d7b0b39b9) and click on Share -> Publish.
+## 🔧 Development
 
-## Can I connect a custom domain to my Lovable project?
+### Build Commands
+```bash
+# Frontend build
+npm run build
 
-Yes, you can!
+# Backend build
+cd backend
+npm run build
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Code Quality
+- TypeScript for type safety
+- ESLint for code linting
+- Prettier for code formatting
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is built for AIBhoomi Hackathon 2025.
+
+## 🆘 Support
+
+If you encounter any issues:
+1. Check the environment variables are set correctly
+2. Ensure all dependencies are installed
+3. Check the console for error messages
+4. Verify your OpenAI API key is valid
+
+## 🎉 Acknowledgments
+
+- Built for AIBhoomi Hackathon 2025
+- Powered by OpenAI GPT technology
+- Built with modern web technologies
